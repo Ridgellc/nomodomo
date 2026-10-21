@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nomō Dōmo Ramen Bar</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23231f20'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='%23e2c79f' font-family='serif'%3EN%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Nomō Dōmo is a ramen bar on Monterey Street in San Luis Obispo. 19-hour tonkotsu, bluefin from Nagasaki, and a room built from hinoki wood.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Klee+One:wght@600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#231f20; --ink-2:#2f2a2a; --hinoki:#e2c79f; --hinoki-2:#d6b585; --paper:#f4eee4; --kombu:#2e3d2f; --kombu-2:#3b4d3b;
+  --shoyu:#4a2a1c; --seal:#b3342a; --seal-deep:#8f261e; --yuzu:#edc14a;
+  --display:"Shippori Mincho B1",Georgia,serif; --hand:"Klee One",cursive; --body:"Montserrat",system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{font-family:var(--body);background:var(--ink);color:var(--paper);font-size:1.05rem;line-height:1.65;overflow-x:hidden}
+main{overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--yuzu);outline-offset:4px;border-radius:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* washi grain */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:90;opacity:.2;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .18 0 0 0 1.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 1s steps(4) infinite}
+@keyframes grain{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-1%,3%)}}
+
+.btn{display:inline-flex;align-items:center;gap:.6em;font:500 .82rem/1 var(--body);letter-spacing:.22em;text-transform:uppercase;padding:1.15em 1.7em;border-radius:2px;text-decoration:none;transition:transform .35s var(--ease),background .25s}
+.btn:hover{transform:translateY(-3px)}
+.btn.seal{background:var(--seal);color:var(--paper)}
+.btn.seal:hover{background:var(--seal-deep)}
+.btn.ink{background:var(--ink);color:var(--paper)}
+.btn.yuzu{background:var(--yuzu);color:var(--ink)}
+.btn.kombu{background:var(--kombu);color:var(--paper)}
+.hand{font-family:var(--hand);font-weight:600}
+.brush{font-family:var(--hand);font-weight:600;font-size:1.25rem;text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/100% 1.5px no-repeat;padding-bottom:3px;transition:background-size .5s var(--ease)}
+.brush:hover{background-size:0 1.5px;background-position:100% 100%}
+
+/* fixed chrome */
+.side{position:fixed;z-index:60;font:600 .8rem var(--display);letter-spacing:.35em;color:var(--paper);writing-mode:vertical-rl;pointer-events:none;mix-blend-mode:difference;opacity:.8}
+.side.l{left:26px;top:36px}.side.r{right:26px;bottom:36px}
+header{position:fixed;inset:0 0 auto;z-index:70;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:26px 40px;pointer-events:none}
+header>*{pointer-events:auto}
+.mark{grid-column:2;display:block;text-decoration:none;text-align:center;color:var(--paper);transition:transform .5s var(--ease),color .4s}
+header.light .mark{color:var(--ink)}
+header.light .burger{background:var(--ink)}
+header.light .burger i{background:var(--paper)}
+header.seal .btn.seal{background:var(--ink)}
+.burger{transition:background .4s}
+.mark span{display:block;font:300 1.05rem/1 var(--body);letter-spacing:.42em;margin-right:-.42em}
+.mark hr{border:0;height:1px;background:currentColor;margin:6px 0}
+.mark small{display:block;font:400 .58rem var(--display);letter-spacing:.5em;margin:6px -.5em 0 0;opacity:.85}
+.mark:hover{transform:scale(1.05)}
+.hdr-r{justify-self:end;display:flex;gap:10px}
+.hdr-r .btn{padding:1em 1.4em}
+.burger{width:46px;height:46px;border-radius:2px;background:var(--hinoki);display:grid;place-content:center;gap:5px}
+.burger i{display:block;width:18px;height:1.5px;background:var(--ink);transition:transform .4s var(--ease),opacity .2s}
+.burger:hover i:nth-child(2){transform:translateX(4px)}
+body.menu-open .burger i:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+body.menu-open .burger i:nth-child(2){opacity:0}
+body.menu-open .burger i:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* hero */
+.hero{position:relative;height:100vh;min-height:620px;overflow:hidden;background:var(--ink)}
+.slides{position:absolute;inset:0}
+.slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.15);transition:opacity 1.8s ease,transform 8s linear}
+.slides img.on{opacity:1;transform:scale(1.02)}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(35,31,32,.35),rgba(35,31,32,.78))}
+.hero-in{position:absolute;inset:0;z-index:2;display:grid;place-content:center;text-align:center;will-change:transform}
+.hero h1{font:800 clamp(3.8rem,11vw,9.4rem)/.98 var(--display);color:var(--hinoki);letter-spacing:-.01em}
+.hero h1 span{display:block;clip-path:inset(0 0 100% 0);transform:translateY(30%);animation:rise 1.2s var(--ease) forwards}
+.hero h1 span:nth-child(2){animation-delay:.14s}.hero h1 span:nth-child(3){animation-delay:.28s}
+@keyframes rise{to{clip-path:inset(0 0 -10% 0);transform:none}}
+.hero p{margin-top:30px;font:400 .82rem var(--body);letter-spacing:.38em;color:var(--hinoki);opacity:0;animation:fade .8s .8s forwards}
+@keyframes fade{to{opacity:1}}
+.badge{position:absolute;z-index:3;right:9vw;bottom:-56px;width:240px;height:240px;display:grid;place-items:center;color:var(--paper)}
+.badge svg.ring{position:absolute;inset:0;animation:spin 18s linear infinite}
+.badge:hover svg.ring{animation-duration:5s}
+.badge .bowl{width:58px;transition:transform .6s var(--ease)}
+.badge:hover .bowl{transform:translateY(8px)}
+.badge .steam path{animation:steam 2.6s ease-in-out infinite}
+.badge .steam path:nth-child(2){animation-delay:.5s}.badge .steam path:nth-child(3){animation-delay:1s}
+@keyframes steam{0%,100%{opacity:.2;transform:translateY(2px)}50%{opacity:1;transform:translateY(-3px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* intro */
+.intro{background:var(--hinoki);color:var(--ink);padding:22vh 12vw 16vh;display:grid;grid-template-columns:1.1fr 1fr;gap:8vw;align-items:start}
+.intro h2{font:800 clamp(2rem,3.5vw,3.2rem)/1.2 var(--display)}
+.intro .copy{max-width:31em;font-size:1.05rem;color:var(--shoyu)}
+.intro .copy p+p{margin-top:1.1em}
+.intro strong{font-weight:600;color:var(--ink)}
+.intro .jp{display:block;font:600 1rem var(--display);letter-spacing:.4em;color:var(--seal);margin-bottom:22px}
+.line{display:block;overflow:hidden;padding-bottom:.06em}
+.line>span{display:block;transform:translateY(105%);transition:transform 1s var(--ease);transition-delay:calc(var(--i,0) * 70ms)}
+.seen .line>span{transform:none}
+
+/* wavy banner */
+.wave{background:var(--hinoki);padding:0 40px 40px}
+.wave-in{position:relative}
+.wave .photo{position:relative;height:min(100vh,860px);overflow:hidden}
+.wave .photo img{width:100%;height:125%;object-fit:cover;will-change:transform}
+.wave .photo::after{content:"";position:absolute;inset:0;background:rgba(35,31,32,.3)}
+.wave svg.txt{position:absolute;left:-40px;width:calc(100% + 80px);top:50%;transform:translateY(-50%);overflow:visible;pointer-events:none}
+.wave text{font:800 74px var(--display);fill:var(--paper)}
+.wave text.alt{fill:var(--yuzu)}
+
+/* place statement */
+.place{position:relative;background:var(--paper);color:var(--shoyu);padding:24vh 6vw 22vh;text-align:center;overflow:hidden}
+.place .icon{width:46px;margin:0 auto 64px;color:var(--seal)}
+.place h2{position:relative;z-index:2;font:800 clamp(2.5rem,6.6vw,6.2rem)/1.15 var(--display)}
+.place a{text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 94%/100% .06em no-repeat;transition:color .3s}
+.place a:hover,.place a:focus-visible{color:var(--seal)}
+.peek{position:absolute;z-index:1;left:0;top:0;width:min(28vw,360px);aspect-ratio:4/5;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.6) rotate(-8deg);transition:opacity .35s,transform .6s var(--ease)}
+.peek.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-3deg)}
+.peek img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s}
+.peek img.on{opacity:1}
+.place .chop{width:56px;margin:90px auto 0;color:var(--seal)}
+
+/* split */
+.split{display:flex;height:100vh;min-height:560px}
+.half{position:relative;flex:1;display:grid;place-content:center;text-align:center;overflow:hidden;text-decoration:none;transition:flex-grow .9s var(--ease)}
+.half.a{background:var(--yuzu);color:var(--shoyu)}
+.half.b{background:var(--kombu);color:var(--hinoki)}
+.half img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.12);transition:opacity .6s,transform 1.4s var(--ease)}
+.half::after{content:"";position:absolute;inset:0;background:rgba(35,31,32,.35);opacity:0;transition:opacity .6s}
+.half>div{position:relative;z-index:2;transition:color .4s;padding:0 20px}
+.half .hand{font-size:clamp(1.2rem,1.8vw,1.6rem);display:block;margin-bottom:6px}
+.half strong{font:800 clamp(3rem,6vw,5.6rem)/1.05 var(--display);display:block}
+.half em{display:block;margin-top:18px;font:500 .74rem var(--body);letter-spacing:.3em;font-style:normal;opacity:.85}
+.split:hover .half{flex-grow:.66}
+.split .half:hover{flex-grow:1.5}
+.half:hover img,.half:focus-visible img{opacity:1;transform:scale(1)}
+.half:hover::after,.half:focus-visible::after{opacity:1}
+.half:hover>div,.half:focus-visible>div{color:var(--paper)}
+
+/* the menu */
+.mnu{background:var(--paper);color:var(--ink);padding:18vh 8vw 16vh}
+.mnu-head{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap;margin-bottom:56px}
+.mnu-head h2{font:800 clamp(3rem,7vw,6rem)/1 var(--display)}
+.mnu-head h2 small{display:block;font:600 1rem var(--display);letter-spacing:.5em;color:var(--seal);margin-bottom:14px}
+.mnu-head p{max-width:24em;color:var(--shoyu)}
+.tabs{position:relative;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid #d9ccb8;margin-bottom:56px}
+.tabs button{position:relative;font:500 .8rem var(--body);letter-spacing:.28em;text-transform:uppercase;padding:18px 22px;color:#7a6a5c;transition:color .3s}
+.tabs button sup{font-size:.62rem;letter-spacing:0;margin-left:5px;color:var(--seal)}
+.tabs button[aria-selected=true]{color:var(--ink)}
+.tabs button:hover{color:var(--ink)}
+.tabs .bar{position:absolute;bottom:-1px;height:3px;background:var(--seal);transition:left .55s var(--ease),width .55s var(--ease)}
+.mnu-body{display:grid;grid-template-columns:1.25fr .9fr;gap:6vw;align-items:start}
+[role=tabpanel]{animation:panel .6s var(--ease)}
+@keyframes panel{from{opacity:0;transform:translateY(16px)}}
+[role=tabpanel] .lead{font:600 1.15rem/1.6 var(--hand);color:var(--shoyu);margin-bottom:34px;max-width:34em}
+[role=tabpanel] ul{list-style:none}
+[role=tabpanel] li{padding:22px 0;border-bottom:1px solid #e4d9c8}
+.row{display:flex;align-items:baseline;gap:14px}
+.row h4{font:800 1.35rem/1.3 var(--display)}
+.row i{flex:1;border-bottom:1.5px dotted #bba98f;transform:translateY(-6px)}
+.price{font:800 1.35rem var(--display);color:var(--seal)}
+[role=tabpanel] p{margin-top:6px;color:#5b4d43;font-size:.95rem;max-width:40em}
+.tag{display:inline-block;margin-top:10px;font:500 .66rem var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--kombu);border:1px solid var(--kombu);padding:5px 9px;border-radius:2px}
+.plate{position:sticky;top:16vh;aspect-ratio:4/5;overflow:hidden;border-radius:48% 52% 44% 56%/42% 46% 54% 58%;animation:morph 14s ease-in-out infinite}
+.plate img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .7s,transform 1.4s var(--ease)}
+.plate img.on{opacity:1;transform:none}
+.mnu-note{margin-top:40px;font-size:.85rem;color:#7a6a5c}
+
+/* ambiance */
+.amb{background:var(--kombu);padding:22vh 0 18vh;overflow:hidden;text-align:center}
+.amb h2{font:800 clamp(1.5rem,2.8vw,2.5rem) var(--display);color:var(--paper);position:relative;z-index:2;margin-bottom:-3vw}
+.amb svg{width:min(78vw,900px);margin:0 auto;overflow:visible}
+.amb .word{font:800 300px var(--display);fill:var(--hinoki)}
+.amb p{max-width:30em;margin:30px auto 0;padding:0 24px;color:var(--hinoki)}
+
+/* celebrations */
+.team{background:var(--shoyu);padding:16vh 6vw;display:grid;place-items:center}
+.blob{position:relative;width:min(560px,86vw);aspect-ratio:1.1/1;overflow:hidden;border-radius:58% 42% 47% 53%/45% 55% 45% 55%;animation:morph 14s ease-in-out infinite;display:grid;place-content:center;text-align:center;color:var(--paper);padding:0 40px}
+.blob img{position:absolute;inset:-6%;width:112%;height:112%;object-fit:cover;filter:brightness(.5)}
+.blob>*:not(img){position:relative}
+.blob .kan{font:800 2.4rem var(--display);color:var(--yuzu);margin-bottom:10px;letter-spacing:.1em}
+.blob h2{font:800 clamp(1.7rem,3.2vw,2.6rem)/1.15 var(--display);margin-bottom:20px}
+.blob .brush{color:var(--yuzu)}
+@keyframes morph{33%{border-radius:40% 60% 62% 38%/52% 38% 62% 48%}66%{border-radius:53% 47% 36% 64%/62% 46% 54% 38%}}
+
+/* visit */
+.visit{background:var(--seal);color:var(--paper);padding:24vh 6vw 10vh;text-align:center}
+.visit h2{font:800 clamp(2.8rem,7.4vw,6.4rem)/1.05 var(--display);margin-bottom:48px}
+.visit .addr{margin-top:34px;font:400 .85rem var(--body);letter-spacing:.3em;line-height:2}
+.visit .hours{margin-top:18px;font-size:.95rem;opacity:.85}
+.visit .ig{display:inline-block;margin-top:60px;color:var(--hinoki)}
+footer{background:var(--seal);color:var(--paper);display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:30px;padding:70px 60px 40px;font-size:.8rem;letter-spacing:.06em}
+footer .mid{text-align:center;line-height:1.9}
+footer .mid .rule{display:flex;align-items:center;gap:22px;margin-bottom:18px}
+footer .mid .rule::before,footer .mid .rule::after{content:"";height:1px;width:min(16vw,220px);background:currentColor;opacity:.6}
+footer .mid .mark{color:var(--paper)}
+footer .end{text-align:right;line-height:1.9;opacity:.85}
+footer .soc{display:flex;justify-content:flex-end;margin-bottom:12px}
+footer .soc svg{width:22px}
+
+/* side menu */
+.scrim{position:fixed;inset:0;z-index:65;background:rgba(35,31,32,.72);opacity:0;pointer-events:none;transition:opacity .6s}
+.menu{position:fixed;z-index:66;top:0;right:0;bottom:0;width:50vw;background:var(--kombu-2);transform:translateX(102%);transition:transform .8s var(--ease);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 9vw;overflow:hidden}
+body.menu-open .scrim{opacity:1;pointer-events:auto}
+body.menu-open .menu{transform:none}
+.menu ol{list-style:none;position:relative;z-index:2}
+.menu li{display:flex;align-items:baseline;gap:44px;margin:4px 0;opacity:0;transform:translateX(40px);transition:opacity .5s,transform .7s var(--ease);transition-delay:calc(var(--d,0) * 50ms)}
+body.menu-open .menu li{opacity:1;transform:none}
+.menu .num{font:600 .95rem var(--display);color:var(--hinoki);width:24px;opacity:.8}
+.menu li a{white-space:nowrap;font:800 clamp(1.8rem,2.9vw,2.7rem)/1.35 var(--display);text-decoration:none;color:var(--hinoki);background:linear-gradient(var(--yuzu),var(--yuzu)) 0 90%/0 2px no-repeat;transition:background-size .5s var(--ease),color .3s}
+.menu li a:hover,.menu li a:focus-visible{background-size:100% 2px;color:var(--paper)}
+.menu .btn{margin:30px 0 0 68px;position:relative;z-index:2}
+.peek2{position:absolute;z-index:1;right:-9vw;top:50%;width:min(26vw,380px);aspect-ratio:3/4;transform:translateY(-50%) rotate(-10deg) scale(.9);opacity:0;transition:opacity .4s,transform .8s var(--ease);pointer-events:none}
+.peek2.on{opacity:.9;transform:translateY(-50%) rotate(-6deg) scale(1)}
+.peek2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s}
+.peek2 img.on{opacity:1}
+
+/* choice overlay */
+.choice{position:fixed;inset:0;z-index:80;display:flex;clip-path:circle(0 at calc(100% - 300px) 60px);transition:clip-path .9s var(--ease);visibility:hidden}
+.choice.open{clip-path:circle(150% at calc(100% - 300px) 60px);visibility:visible}
+.choice>section{flex:1;display:grid;place-content:center;text-align:center;padding:40px}
+.choice .c-a{background:var(--hinoki);color:var(--ink)}
+.choice .c-b{background:var(--kombu);color:var(--hinoki)}
+.choice .hand{font-size:1.6rem}
+.choice h2{font:800 clamp(3rem,6vw,5.4rem)/1.05 var(--display);margin:4px 0 40px}
+.choice .note{max-width:21em;margin:24px auto 0;font-size:.92rem}
+.torn{position:absolute;top:0;right:0;width:300px;height:130px;color:var(--paper)}
+.torn svg{position:absolute;inset:0;width:100%;height:100%}
+.torn button{position:absolute;right:24px;top:18px;display:flex;align-items:center;gap:10px;font:600 1.5rem var(--hand);color:var(--seal)}
+.torn button span{font:300 1.6rem var(--body)}
+
+/* dialogs */
+dialog{margin:auto;border:0;padding:0;background:none;max-width:min(720px,calc(100vw - 32px));width:100%;color:var(--ink)}
+dialog::backdrop{background:rgba(35,31,32,.75)}
+.card{position:relative;background:var(--hinoki);border-radius:4px;padding:60px 56px 46px;text-align:center;overflow:hidden}
+.card .x{position:absolute;top:12px;right:12px;width:42px;height:42px;border-radius:2px;background:var(--seal);color:var(--paper);font-size:1.4rem;font-weight:300}
+.card .stamp{position:absolute;left:24px;top:22px;width:54px;height:54px;border:2px solid var(--seal);color:var(--seal);border-radius:4px;display:grid;place-content:center;font:800 1.1rem/1.05 var(--display);transform:rotate(-8deg);opacity:.85}
+.card h2{font:800 clamp(2.1rem,4.6vw,3.4rem)/1.1 var(--display)}
+.card .hand{display:block;font-size:clamp(1.2rem,2.2vw,1.5rem);line-height:1.5;margin:24px auto 32px;max-width:24em;color:var(--shoyu)}
+.card .no{display:block;margin:22px auto 0;color:var(--kombu)}
+dialog[open] .card{animation:drop .7s var(--ease)}
+@keyframes drop{from{transform:translateY(-40px) rotate(-2deg);opacity:0}}
+.quote .card{background:var(--paper);text-align:left}
+.quote h2{margin-bottom:8px}
+.quote form{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;margin-top:26px}
+.quote label{display:grid;gap:6px;font:500 .72rem var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--kombu)}
+.quote input,.quote select{font:400 1rem var(--body);letter-spacing:0;text-transform:none;padding:12px;border:1px solid #cdbfa9;border-radius:2px;background:#fffdf8;color:var(--ink)}
+.quote input:focus,.quote select:focus{border-color:var(--kombu);outline:0}
+.quote .full{grid-column:1/-1}
+.quote .done{display:none;margin-top:18px;font-weight:600;color:var(--kombu)}
+
+@media (max-width:900px){
+  header{padding:18px 20px}
+  .side{display:none}
+  .hdr-r .btn{padding:.9em 1em;letter-spacing:.14em}
+  .badge{width:160px;height:160px;right:4vw;bottom:-36px}
+  .badge .bowl{width:40px}
+  .hero p{font-size:.68rem;letter-spacing:.22em;padding:0 24px}
+  .intro{grid-template-columns:1fr;padding:16vh 24px 12vh;gap:36px}
+  .wave{padding:0 16px 16px}
+  .wave svg.txt{left:-70%;width:240%}
+  .split{flex-direction:column;height:auto}
+  .half{min-height:60vh}
+  .mnu{padding:14vh 20px 12vh}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-left:-20px;margin-right:-20px;padding:0 20px}
+  .tabs button{padding:16px 14px;flex:none}
+  .mnu-body{grid-template-columns:1fr}
+  .plate{display:none}
+  .amb svg{width:128vw;margin-left:-14vw}
+  .amb h2{margin-bottom:0}
+  .menu{width:100vw;padding:0 28px}
+  .peek2{display:none}
+  .menu li{gap:24px}
+  .menu .btn{margin-left:48px}
+  .choice{flex-direction:column}
+  .torn{width:220px;height:100px}
+  .card{padding:70px 24px 36px}
+  .quote form{grid-template-columns:1fr}
+  footer{grid-template-columns:1fr;text-align:center;padding:50px 24px 36px}
+  footer .end{text-align:center}
+  footer .soc{justify-content:center}
+}
+@media (max-width:560px){.hdr-r .btn{display:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<span class="side l" aria-hidden="true">ラーメン</span>
+<span class="side r" aria-hidden="true">乾杯</span>
+
+<header>
+  <a class="mark" href="#top" aria-label="Nomō Dōmo, back to top"><span>NOMŌ</span><hr><span>DŌMO</span><small>ノモドモ</small></a>
+  <div class="hdr-r">
+    <button class="btn seal" data-join>Join us</button>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="menu" id="menu" aria-label="Main menu">
+  <ol>
+    <li style="--d:0"><span class="num">I</span><a href="#top" data-img="0">Nomō Dōmo</a></li>
+    <li style="--d:1"><span class="num">II</span><a href="#split" data-img="1">Ramen</a></li>
+    <li style="--d:2"><span class="num">III</span><a href="#menu-sec" data-img="2">The menu</a></li>
+    <li style="--d:3"><span class="num">IV</span><a href="#amb" data-img="3">The room</a></li>
+    <li style="--d:4"><span class="num">V</span><a href="#team" data-img="4">Celebrations</a></li>
+    <li style="--d:5"><span class="num">VI</span><a href="#visit" data-img="5">Visit</a></li>
+  </ol>
+  <a class="btn seal" href="#visit">Get directions</a>
+  <div class="peek2" aria-hidden="true">
+    <img src="img/lanterns.webp" alt=""><img src="img/egg.webp" alt=""><img src="img/gyoza.webp" alt=""><img src="img/forest.webp" alt=""><img src="img/table.webp" alt=""><img src="img/beer.webp" alt="">
+  </div>
+</nav>
+
+<main id="top">
+  <section class="hero" aria-label="Welcome" data-tone="dark">
+    <div class="slides" aria-hidden="true">
+      <img class="on" src="img/hero1.webp" alt="">
+      <img src="img/hero2.webp" alt="">
+      <img src="img/hero3.webp" alt="">
+    </div>
+    <div class="hero-in" id="heroIn">
+      <h1><span>Slurp.</span><span>Share.</span><span>Celebrate.</span></h1>
+      <p>A RAMEN BAR ON MONTEREY STREET, SAN LUIS OBISPO</p>
+    </div>
+    <a class="badge" href="#intro" aria-label="Scroll to the next section">
+      <svg class="ring" viewBox="0 0 240 240" aria-hidden="true">
+        <defs><path id="circ" d="M120,120 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs>
+        <text style="font:500 15px Montserrat,sans-serif;fill:currentColor"><textPath href="#circ" textLength="548" lengthAdjust="spacing">SCROLL ✱ ノモドモ ✱ SCROLL ✱ 乾杯 ✱ </textPath></text>
+      </svg>
+      <svg class="bowl" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <g class="steam"><path d="M22 20c-3-4 3-6 0-10"/><path d="M32 20c-3-4 3-6 0-10"/><path d="M42 20c-3-4 3-6 0-10"/></g>
+        <path d="M44 6L30 30M52 9L36 30"/>
+        <path d="M8 31h48c0 13-10 22-24 22S8 44 8 31z" fill="currentColor"/><path d="M24 53l-2 6h20l-2-6"/>
+      </svg>
+    </a>
+  </section>
+
+  <section class="intro" id="intro" data-tone="light">
+    <h2 class="reveal" data-lines>Nomō Dōmo loosely translates as “let's get together and celebrate.” So we built a room for exactly that.</h2>
+    <div class="copy">
+      <span class="jp" aria-hidden="true">ノモドモ</span>
+      <p><strong>We don't just serve ramen; we serve memories.</strong></p>
+      <p>Step in from Monterey Street and you're somewhere else: a tranquil, beachside retreat of natural wood and traditional Japanese design. The space is made with hinoki wood, minimal and calm, with a little coastal charm.</p>
+      <p>The menu is thoughtful and rooted in soulful flavor. <strong>Every dish is meant to comfort, inspire, and bring people together.</strong></p>
+    </div>
+  </section>
+
+  <section class="wave" data-tone="light" aria-label="From bone to broth, every bowl is a culmination of time">
+    <div class="wave-in">
+      <div class="photo" data-tone="dark"><img id="waveImg" src="img/banner.webp" alt="A bowl of shoyu ramen with sliced duck, egg and chopsticks"></div>
+      <svg class="txt" viewBox="0 0 1400 460" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <path id="w1" d="M-200 120 C 150 20, 400 40, 700 130 S 1250 240, 1600 110"/>
+          <path id="w2" d="M-200 230 C 150 140, 450 150, 750 240 S 1300 330, 1600 220"/>
+          <path id="w3" d="M-200 340 C 200 250, 450 270, 760 350 S 1300 440, 1600 330"/>
+        </defs>
+        <text><textPath href="#w1" class="tp">From bone to broth ✱ every bowl takes time ✱ From bone to broth ✱ every bowl takes time ✱</textPath></text>
+        <text class="alt"><textPath href="#w2" class="tp">patience ✱ and the art of layering flavors ✱ patience ✱ and the art of layering flavors ✱</textPath></text>
+        <text><textPath href="#w3" class="tp">From bone to broth ✱ every bowl takes time ✱ From bone to broth ✱ every bowl takes time ✱</textPath></text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="place" id="place" data-tone="light">
+    <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="5" width="38" height="38" rx="3"/><path d="M14 17h20M14 24h20M14 31h20" opacity=".6"/></svg>
+    <div class="peek" id="peek" aria-hidden="true"><img src="img/slurp.webp" alt=""><img src="img/share.webp" alt=""><img src="img/linger.webp" alt=""></div>
+    <h2>One spot to <a href="#menu-sec" data-peek="0">slurp</a>, <a href="#menu-sec" data-peek="1">share</a> and <a href="#amb" data-peek="2">linger</a>, right on Monterey Street.</h2>
+    <svg class="chop" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 26L60 8M4 30L60 18"/></svg>
+  </section>
+
+  <section class="split" id="split" aria-label="Ramen and bluefin">
+    <a class="half a" href="#menu-sec" data-tab="ramen" data-tone="light">
+      <img src="img/ramen.webp" alt="">
+      <div><span class="hand">Nineteen hours, four cuts of pork</span><strong>Ramen.</strong><em>SEE THE BOWLS</em></div>
+    </a>
+    <a class="half b" href="#menu-sec" data-tab="special" data-tone="dark">
+      <img src="img/bluefin.webp" alt="">
+      <div><span class="hand">All the way from Nagasaki</span><strong>Bluefin.</strong><em>SEE THE SPECIALS</em></div>
+    </a>
+  </section>
+
+  <section class="mnu" id="menu-sec" data-tone="light" aria-labelledby="mnuT">
+    <div class="mnu-head">
+      <h2 id="mnuT"><small aria-hidden="true">お品書き</small>The menu</h2>
+      <p>Four ramens, small plates to share, and specials from the sea. Prices in US dollars.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Menu sections">{{TABS}}<span class="bar" aria-hidden="true"></span></div>
+    <div class="mnu-body">
+      <div>{{PANELS}}<p class="mnu-note">Menu from Nomō Dōmo. Dishes and prices can change, so ask your server what's on tonight.</p></div>
+      <div class="plate" aria-hidden="true">{{PHOTOS}}</div>
+    </div>
+  </section>
+
+  <section class="amb" id="amb" data-tone="dark">
+    <h2>All in a room made with</h2>
+    <svg viewBox="0 0 1000 760" role="img" aria-label="Hinoki">
+      <defs>
+        <clipPath id="blobClip"><path d="M520 40C700 30 860 150 900 330C940 520 820 710 600 730C380 750 150 700 110 500C70 300 300 50 520 40Z">
+          <animate attributeName="d" dur="12s" repeatCount="indefinite" values="M520 40C700 30 860 150 900 330C940 520 820 710 600 730C380 750 150 700 110 500C70 300 300 50 520 40Z;M480 60C690 20 900 190 890 380C880 560 760 730 540 720C320 710 120 640 120 440C120 240 270 100 480 60Z;M540 30C760 60 880 220 860 400C840 600 700 740 500 735C300 730 100 620 130 420C160 220 320 0 540 30Z;M520 40C700 30 860 150 900 330C940 520 820 710 600 730C380 750 150 700 110 500C70 300 300 50 520 40Z"/>
+        </path></clipPath>
+      </defs>
+      <g clip-path="url(#blobClip)">
+        <image href="img/forest.webp" x="0" y="0" width="1000" height="760" preserveAspectRatio="xMidYMid slice"/>
+        <rect width="1000" height="760" fill="#231f20" opacity=".25"/>
+        <text class="word" id="ambWord" x="1000" y="390" dominant-baseline="middle">Hinoki</text>
+      </g>
+    </svg>
+    <p>Hinoki is Japanese cypress: pale, fragrant and calm. It's the wood the room is made with, and it sets the tone for everything else.</p>
+  </section>
+
+  <section class="team" id="team" data-tone="dark">
+    <div class="blob">
+      <img src="img/table.webp" alt="">
+      <span class="kan" aria-hidden="true">乾杯</span>
+      <h2>Psst, got something<br>to celebrate?</h2>
+      <button class="brush" data-quote>Plan a group dinner</button>
+    </div>
+  </section>
+
+  <section class="visit" id="visit" data-tone="seal">
+    <h2>So, shall we<br>get together?</h2>
+    <a class="btn ink" href="https://www.google.com/maps/search/?api=1&query=848+Monterey+St+San+Luis+Obispo+CA+93401" target="_blank" rel="noopener">Get directions</a>
+    <p class="addr">848 MONTEREY ST<br>SAN LUIS OBISPO, CA 93401</p>
+    <p class="hours">Hours change with the seasons. Check Instagram for today's hours.</p>
+    <a class="brush ig" href="https://www.instagram.com/nomo_domo_/" target="_blank" rel="noopener">Follow @nomo_domo_ on Instagram</a>
+  </section>
+</main>
+
+<footer data-tone="seal">
+  <div></div>
+  <div class="mid">
+    <div class="rule"><a class="mark" href="#top" aria-label="Back to top"><span>NOMŌ</span><hr><span>DŌMO</span></a></div>
+    848 Monterey St, San Luis Obispo, CA 93401<br>Website concept by Ridge. Sample photos.
+  </div>
+  <div class="end">
+    <div class="soc"><a href="https://www.instagram.com/nomo_domo_/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a></div>
+    © 2026 Nomō Dōmo
+  </div>
+</footer>
+
+<div class="choice" id="choice" role="dialog" aria-modal="true" aria-label="How are you joining us?">
+  <section class="c-a">
+    <span class="hand">Here for a</span>
+    <h2>Bowl?</h2>
+    <div><a class="btn seal" href="#menu-sec">See the menu</a></div>
+    <p class="note">Come in and grab a seat. Ramen, small plates and specials from the sea.</p>
+  </section>
+  <section class="c-b">
+    <span class="hand">Or here to</span>
+    <h2>Celebrate?</h2>
+    <div><button class="btn yuzu" data-quote>Plan a group dinner</button></div>
+    <p class="note">Birthdays, team dinners, family nights. Tell us about it and we'll set the table.</p>
+  </section>
+  <div class="torn">
+    <svg viewBox="0 0 300 130" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 0H300V125C278 128 262 108 240 100C214 90 200 108 172 92C150 79 148 52 120 44C92 36 84 20 62 14C40 8 18 6 0 0Z"/></svg>
+    <button id="closeChoice">Close <span aria-hidden="true">×</span></button>
+  </div>
+</div>
+
+<dialog id="hh" aria-labelledby="hhT">
+  <div class="card">
+    <span class="stamp" aria-hidden="true">一<br>杯</span>
+    <button class="x" data-close aria-label="Close">×</button>
+    <h2 id="hhT">Fresh from<br>the pot</h2>
+    <span class="hand">Our tonkotsu broth simmers for 19 hours, made from four cuts of pork. Worth the wait.</span>
+    <a class="btn kombu" href="#menu-sec" data-close>See the ramen</a>
+    <button class="brush no" data-close>No thanks</button>
+  </div>
+</dialog>
+
+<dialog id="quote" class="quote" aria-labelledby="qT">
+  <div class="card">
+    <button class="x" data-close aria-label="Close">×</button>
+    <h2 id="qT">Plan a group dinner</h2>
+    <p>Tell us about your celebration and we'll get back to you.</p>
+    <form id="quoteForm">
+      <label>Occasion<select required><option>Birthday</option><option>Team dinner</option><option>Family gathering</option><option>Something else</option></select></label>
+      <label>Guests<input type="number" min="4" max="60" value="8" required></label>
+      <label>Date<input type="date" required></label>
+      <label>Phone<input type="tel" autocomplete="tel"></label>
+      <label>Name<input required autocomplete="name"></label>
+      <label>Email<input type="email" required autocomplete="email"></label>
+      <div class="full"><button class="btn seal" type="submit">Send my request</button></div>
+    </form>
+    <p class="done" id="qDone" role="status">Request sent. We'll be in touch soon.</p>
+  </div>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+
+// smooth scroll
+let lenis = null;
+if (!reduce && window.Lenis) {
+  lenis = new Lenis({ lerp: .085, wheelMultiplier: .9 });
+  requestAnimationFrame(function raf(t){ lenis.raf(t); requestAnimationFrame(raf); });
+}
+const lock = on => lenis && (on ? lenis.stop() : lenis.start());
+function goTo(id){ if (lenis) lenis.scrollTo(id === '#top' ? 0 : id, { duration: 1.6 }); else (id === '#top' ? scrollTo(0, 0) : document.querySelector(id).scrollIntoView({ behavior: 'smooth' })); }
+$$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  const id = a.getAttribute('href'); if (id.length < 2) return;
+  e.preventDefault(); closeMenu(); closeChoice(); goTo(id);
+}));
+
+// hero slideshow
+const slides = $$('.slides img'); let si = 0;
+if (!reduce) setInterval(() => { slides[si].classList.remove('on'); si = (si + 1) % slides.length; slides[si].classList.add('on'); }, 5200);
+
+// scroll-linked motion
+const heroIn = $('#heroIn'), waveImg = $('#waveImg'), tps = $$('.tp'), ambWord = $('#ambWord'), amb = $('#amb'), wave = $('.wave');
+const t0 = performance.now();
+function frame(now){
+  const y = scrollY, vh = innerHeight;
+  if (y < vh * 1.2) heroIn.style.transform = `translateY(${y * -.35}px)`;
+  const wr = wave.getBoundingClientRect();
+  if (wr.bottom > 0 && wr.top < vh) {
+    const p = (vh - wr.top) / (vh + wr.height);
+    waveImg.style.transform = `translateY(${-p * 20}%)`;
+    const drift = (now - t0) * .02;
+    tps.forEach((tp, i) => tp.setAttribute('startOffset', ((i % 2 ? -1 : 1) * (p * 900 + drift) % 1300 - (i % 2 ? 300 : 900))));
+  }
+  const ar = amb.getBoundingClientRect();
+  if (ar.bottom > 0 && ar.top < vh) ambWord.setAttribute('x', 1000 - ((vh - ar.top) / (vh + ar.height)) * 2100);
+  setTone();
+  if (!reduce) requestAnimationFrame(frame);
+}
+// header colors follow the section underneath it
+const hdr = document.querySelector('header'); let tone = '';
+function setTone(){
+  const el = document.elementsFromPoint(innerWidth / 2, 60).find(e => !hdr.contains(e) && e.closest('[data-tone]'));
+  const t = el ? el.closest('[data-tone]').dataset.tone : 'dark';
+  if (t !== tone) { if (tone) hdr.classList.remove(tone); if (t !== 'dark') hdr.classList.add(t); tone = t; }
+}
+if (reduce) addEventListener('scroll', setTone, { passive: true });
+if (reduce) ambWord.setAttribute('x', 80); else requestAnimationFrame(frame);
+
+// split headings into real rendered lines, then reveal them line by line
+function splitLines(el){
+  const words = el.textContent.trim().split(/\s+/);
+  el.innerHTML = words.map(w => `<span class="w">${w}</span>`).join(' ');
+  const lines = []; let top = null;
+  el.querySelectorAll('.w').forEach(w => { if (w.offsetTop !== top) { lines.push([]); top = w.offsetTop; } lines[lines.length - 1].push(w.textContent); });
+  el.innerHTML = lines.map((l, i) => `<span class="line" style="--i:${i}"><span>${l.join(' ')}</span></span>`).join('');
+}
+$$('[data-lines]').forEach(el => { el.setAttribute('aria-label', el.textContent.trim()); document.fonts.ready.then(() => splitLines(el)); });
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); } }), { threshold: .3 });
+$$('.reveal').forEach(el => io.observe(el));
+
+// hover words reveal a photo that follows the cursor
+const peek = $('#peek'), peekImgs = peek.querySelectorAll('img'), place = $('#place');
+$$('[data-peek]').forEach(a => {
+  const show = () => {
+    const r = place.getBoundingClientRect(), w = a.getBoundingClientRect();
+    peek.style.left = (w.left + w.width / 2 - r.left) + 'px'; peek.style.top = (w.top + w.height / 2 - r.top) + 'px';
+    peekImgs.forEach((im, i) => im.classList.toggle('on', i == a.dataset.peek)); peek.classList.add('on');
+  };
+  a.addEventListener('mouseenter', show); a.addEventListener('focus', show);
+  a.addEventListener('mouseleave', () => peek.classList.remove('on')); a.addEventListener('blur', () => peek.classList.remove('on'));
+});
+place.addEventListener('mousemove', e => {
+  const r = place.getBoundingClientRect();
+  peek.style.left = (e.clientX - r.left) + 'px'; peek.style.top = (e.clientY - r.top) + 'px';
+});
+
+// menu tabs
+const tabs = $$('[role=tab]'), bar = $('.tabs .bar'), plateImgs = $$('.plate img');
+function moveBar(t){ bar.style.left = t.offsetLeft + 'px'; bar.style.width = t.offsetWidth + 'px'; }
+function selectTab(t, focus){
+  tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute('aria-controls')).hidden = !on; });
+  const idx = tabs.indexOf(t); plateImgs.forEach((im, i) => im.classList.toggle('on', i === idx));
+  moveBar(t); if (focus) t.focus();
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => selectTab(t));
+  t.addEventListener('keydown', e => {
+    const k = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (!k) return;
+    e.preventDefault(); selectTab(tabs[(i + k + tabs.length) % tabs.length], true);
+  });
+});
+document.fonts.ready.then(() => moveBar(tabs[0])); addEventListener('resize', () => moveBar($('[role=tab][aria-selected=true]')));
+$$('[data-tab]').forEach(a => a.addEventListener('click', () => selectTab($('#tab-' + a.dataset.tab))));
+
+// side menu
+const body = document.body, burger = $('#burger'), menu = $('#menu'), peek2 = $('.peek2'), p2 = peek2.querySelectorAll('img');
+function openMenu(){ body.classList.add('menu-open'); burger.setAttribute('aria-expanded', 'true'); burger.setAttribute('aria-label', 'Close menu'); lock(true); menu.querySelector('a').focus({ preventScroll: true }); }
+function closeMenu(){ if (!body.classList.contains('menu-open')) return; body.classList.remove('menu-open'); burger.setAttribute('aria-expanded', 'false'); burger.setAttribute('aria-label', 'Open menu'); lock(false); }
+burger.addEventListener('click', () => body.classList.contains('menu-open') ? closeMenu() : openMenu());
+$('#scrim').addEventListener('click', closeMenu);
+menu.querySelectorAll('[data-img]').forEach(a => {
+  a.addEventListener('mouseenter', () => { p2.forEach((im, i) => im.classList.toggle('on', i == a.dataset.img)); peek2.classList.add('on'); });
+  a.addEventListener('mouseleave', () => peek2.classList.remove('on'));
+});
+if (fine) menu.addEventListener('mousemove', e => { peek2.style.marginTop = ((e.clientY / innerHeight) - .5) * 60 + 'px'; });
+
+// join-us choice overlay
+const choice = $('#choice');
+function openChoice(){ closeMenu(); choice.classList.add('open'); lock(true); setTimeout(() => $('#closeChoice').focus(), 300); }
+function closeChoice(){ if (!choice.classList.contains('open')) return; choice.classList.remove('open'); lock(false); }
+$$('[data-join]').forEach(b => b.addEventListener('click', openChoice));
+$('#closeChoice').addEventListener('click', closeChoice);
+addEventListener('keydown', e => { if (e.key === 'Escape') { closeChoice(); closeMenu(); } });
+
+// dialogs
+$$('dialog').forEach(d => {
+  d.addEventListener('click', e => { if (e.target === d || e.target.closest('[data-close]')) d.close(); });
+  d.addEventListener('close', () => lock(false));
+});
+const hh = $('#hh');
+let seen = false; try { seen = sessionStorage.getItem('nd-pot') === '1'; } catch (e) {}
+if (!seen) setTimeout(() => { if (!document.querySelector('dialog[open]')) { hh.showModal(); lock(true); } try { sessionStorage.setItem('nd-pot', '1'); } catch (e) {} }, 2200);
+$$('[data-quote]').forEach(b => b.addEventListener('click', () => { closeChoice(); $('#quote').showModal(); lock(true); }));
+$('#quoteForm').addEventListener('submit', e => { e.preventDefault(); e.target.style.display = 'none'; $('#qDone').style.display = 'block'; });
+</script>
+</body>
+</html>
